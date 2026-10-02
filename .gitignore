@@ -1,0 +1,20 @@
+# Rust
+/server/target/
+
+# Node / Vite
+/web/node_modules/
+/web/dist/
+*.tsbuildinfo
+
+# Omgeving en gegevens (nooit committen)
+.env
+*.env.local
+/server/data/
+/data/
+
+# Editors en systeem
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

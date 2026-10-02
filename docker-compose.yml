@@ -1,0 +1,20 @@
+services:
+  miltech-sales:
+    build:
+      context: .
+      args:
+        VITE_CONTROL_URL: ${VITE_CONTROL_URL:-}
+    image: miltech-sales:latest
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    environment:
+      APP_PASSWORD: ${APP_PASSWORD:?Zet APP_PASSWORD in .env}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-sonnet-4-5}
+      RUST_LOG: ${RUST_LOG:-miltech_sales=info,tower_http=info}
+    volumes:
+      - miltech-data:/data
+
+volumes:
+  miltech-data:

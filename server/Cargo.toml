@@ -1,0 +1,36 @@
+[package]
+name = "miltech-sales-server"
+version = "1.0.0"
+edition = "2021"
+description = "Backend voor het Miltech Sales dashboard: gedeelde database met live updates, bestandsopslag en Claude-proxy"
+license = "UNLICENSED"
+publish = false
+
+[[bin]]
+name = "miltech-sales"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+async-stream = "0.3"
+axum = { version = "0.7", features = ["macros"] }
+base64 = "0.22"
+bytes = "1"
+dotenvy = "0.15"
+futures = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls-native-roots"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "fs", "sync", "signal", "net"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["fs", "trace", "compression-gzip", "set-header"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
